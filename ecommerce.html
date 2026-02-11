@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy Picture.ecom</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #111, #050505);
+    color: white;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(0,255,255,0.15);
+}
+
+nav h1 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.cart {
+    background: rgba(0,255,255,0.1);
+    border: 1px solid rgba(0,255,255,0.4);
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: #00ffff;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 70px 20px 30px;
+}
+
+.hero h2 {
+    font-size: 36px;
+    font-weight: 500;
+    background: linear-gradient(90deg, #00ffff, #00ffa6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: rgba(255,255,255,0.5);
+    margin-top: 10px;
+}
+
+/* GRID */
+.container {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    transition: 0.35s;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,255,255,0.15);
+    border-color: rgba(0,255,255,0.5);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+/* BADGE */
+.badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0,255,255,0.15);
+    border: 1px solid rgba(0,255,255,0.5);
+    color: #00ffff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+/* TEXT */
+.card h3 {
+    font-weight: 400;
+    margin-bottom: 6px;
+}
+
+.price {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.old {
+    text-decoration: line-through;
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    margin-left: 6px;
+}
+
+/* BUTTON */
+button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #00ffff, #00ffa6);
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    box-shadow: 0 0 20px rgba(0,255,255,0.6);
+}
+
+/* RIBBON */
+.ribbon {
+    text-align: center;
+    padding: 10px;
+    color: #00ffff;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.menu-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.25s;
+}
+
+.menu-btn:hover {
+    background: rgba(0,255,255,0.15);
+    border-color: rgba(0,255,255,0.6);
+    box-shadow: 0 0 12px rgba(0,255,255,0.4);
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: rgba(20,20,20,0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    display: none;
+    min-width: 160px;
+    overflow: hidden;
+}
+
+.dropdown div {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.dropdown div:hover {
+    background: rgba(0,255,255,0.15);
+    color: #00ffff;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h1>Buy Picture .ecom</h1>
+
+    <div style="display:flex; align-items:center; gap:15px; position:relative;">
+
+        <div class="cart">Cart: <span id="cartCount">0</span></div>
+
+        <div class="menu-btn" onclick="toggleMenu()">
+            ⋯
+        </div>
+
+        <div class="dropdown" id="dropdownMenu">
+            <div onclick="openAdmin()">Visitor Track</div>
+        </div>
+
+    </div>
+</nav>
+
+
+
+<div class="ribbon">
+    PREMIUM DIGITAL COLLECTION • FUTURE VISUALS
+</div>
+
+<div class="hero">
+    <h2>Next-Gen Picture Assets</h2>
+    <p>Ultra HD • Instant Access • Curated Quality</p>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="badge">HOT</div>
+        <img src="https://picsum.photos/300/200">
+        <h3>Neon Landscape</h3>
+        <div class="price">$19 <span class="old">$39</span></div>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <div class="badge">TRENDING</div>
+        <img src="https://picsum.photos/301/200">
+        <h3>Cyber Aesthetic</h3>
+        <div class="price">$79 <span class="old">$99</span></div>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <div class="badge">NEW</div>
+        <img src="https://picsum.photos/302/200">
+        <h3>Futuristic Frame</h3>
+        <div class="price">$29 <span class="old">$49</span></div>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="badge">HOT</div>
+        <img src="https://picsum.photos/303/200">
+        <h3>Neon Landscape</h3>
+        <div class="price">$19 <span class="old">$39</span></div>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <div class="badge">TRENDING</div>
+        <img src="https://picsum.photos/304/200">
+        <h3>Cyber Aesthetic</h3>
+        <div class="price">$79 <span class="old">$99</span></div>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <div class="badge">NEW</div>
+        <img src="https://picsum.photos/305/200">
+        <h3>Futuristic Frame</h3>
+        <div class="price">$29 <span class="old">$49</span></div>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="badge">HOT</div>
+        <img src="https://picsum.photos/306/200">
+        <h3>Neon Landscape</h3>
+        <div class="price">$19 <span class="old">$39</span></div>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <div class="badge">TRENDING</div>
+        <img src="https://picsum.photos/307/200">
+        <h3>Cyber Aesthetic</h3>
+        <div class="price">$79 <span class="old">$99</span></div>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <div class="badge">NEW</div>
+        <img src="https://picsum.photos/308/200">
+        <h3>Futuristic Frame</h3>
+        <div class="price">$29 <span class="old">$49</span></div>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+</div>
+
+<script>
+
+    function toggleMenu() {
+    let menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function openAdmin() {
+    window.location.href = "visitortrack.html"; // visitor tracking page
+}
+
+// Close menu when clicking outside
+document.addEventListener("click", function(event) {
+    let menu = document.getElementById("dropdownMenu");
+    let button = document.querySelector(".menu-btn");
+
+    if (!button.contains(event.target) && !menu.contains(event.target)) {
+        menu.style.display = "none";
+    }
+});
+
+
+let visits = localStorage.getItem("ecommerceVisits") || 0;
+visits++;
+localStorage.setItem("ecommerceVisits", visits);
+
+let count = localStorage.getItem("cartCount") || 0;
+document.getElementById("cartCount").textContent = count;
+
+function addToCart() {
+    count++;
+    localStorage.setItem("cartCount", count);
+    document.getElementById("cartCount").textContent = count;
+}
+</script>
+
+</body>
+</html>

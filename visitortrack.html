@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #f5f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* LOGIN PANEL */
+.login-box {
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+    width: 320px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #0071e3;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #005ecb;
+}
+
+/* DASHBOARD */
+.dashboard {
+    display: none;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.number {
+    font-size: 36px;
+    margin-top: 10px;
+}
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #0071e3;
+    color: white;
+    cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+<div class="login-box" id="loginBox">
+    <h2>Admin Access</h2>
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="checkPassword()">Unlock</button><br>
+    <button onclick="goBack()">Back to Store</button>
+</div>
+
+<div class="dashboard" id="dashboard">
+    <h2>Visitor Statistics</h2>
+    <p>Total Store Visits</p>
+    <div class="number" id="visitCount">0</div>
+    <br>
+    <button onclick="logout()">Lock</button><br>
+    <button onclick="goBack()">Back to Store</button>
+</div>
+
+<script>
+const ADMIN_PASSWORD = "admin123"; // CHANGE THIS
+
+// Session persistence
+if (sessionStorage.getItem("adminUnlocked")) {
+    showDashboard();
+}
+
+function checkPassword() {
+    let input = document.getElementById("password").value;
+
+    if (input === ADMIN_PASSWORD) {
+        sessionStorage.setItem("adminUnlocked", true);
+        showDashboard();
+    } else {
+        alert("Incorrect Password");
+    }
+}
+
+function showDashboard() {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+
+    let visits = localStorage.getItem("ecommerceVisits") || 0;
+    document.getElementById("visitCount").textContent = visits;
+}
+
+function logout() {
+    sessionStorage.removeItem("adminUnlocked");
+    location.reload();
+}
+
+function goBack() {
+    window.location.href = "ecommerce.html";
+}
+
+</script>
+
+</body>
+</html>
